@@ -1,4 +1,4 @@
-# Projet PRID 2021 - Groupe 06 - Marie-Hélène Devogeleer et Kevin David L. Girs. 2020 - 2021
+# Projet PRID 2021 - Groupe 06
 
 ### Liste des utilisateurs et mots de passes
 
@@ -42,3 +42,7 @@
 
 ### Fonctionnalités manquantes
     Lors d'un Sign Up, il n'y a pas de vérification pour la date de naissance.
+
+## Auteurs
+* **Marie-Hélène Devogeleer et Kevin David L. Girs.
+* **Kevin David L. Girs.
