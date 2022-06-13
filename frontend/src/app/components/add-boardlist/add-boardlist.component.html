@@ -1,0 +1,17 @@
+<form [formGroup]="frm" novalidate>
+  <h1 class=" header " style="color:white">Add List</h1>
+  <div class="form ">
+    <mat-form-field>
+      <input matInput placeholder="Name " [formControl]="ctlName ">
+      <mat-error class="field-error " *ngIf="ctlName.hasError('required') ">Required</mat-error>
+      <mat-error class="field-error" *ngIf="ctlName.hasError('minlength')">Minimum length is
+        {{ctlName.errors['minlength'].requiredLength}}</mat-error>
+      <mat-error class="field-error" *ngIf="ctlName.hasError('maxlength')">Maximum length is
+        {{ctlName.errors['maxlength'].requiredLength}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="footer">
+    <button style="color:white" mat-stroked-button [disabled]="frm.pristine || frm.invalid || frm.pending" (click)="close()">Add</button>
+    <button style="color:white" type="reset" mat-button (click)="cancel()">Cancel</button>
+  </div>
+</form>

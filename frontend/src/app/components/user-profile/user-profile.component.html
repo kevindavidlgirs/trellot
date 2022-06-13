@@ -1,0 +1,14 @@
+<div *ngIf="userLoaded">
+  <div id="gradient"></div>
+  <div id="card">
+    <img mat-card-avatar [src]="picturePath" />
+    <h2 style="font-weight: bold">{{user?.pseudo}}</h2>
+    <p>Firstname : {{user?.firstName}}</p>
+    <p>Lastname : {{user?.lastName}}</p>
+    <p>Email : {{user?.email}}</p>
+    <p *ngIf="user.birthDate"> BirthDate : {{ user?.birthDate }} </p>
+    <mat-card-actions class="right bottom">
+      <button mat-button color="warn" (click)="deleteUser()">Delete account</button>
+    </mat-card-actions>
+  </div>
+</div>

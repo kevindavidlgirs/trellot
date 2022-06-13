@@ -1,0 +1,109 @@
+<!-- sidebar de droite -->
+<div class="sidebar animate-right" id="rightMenu" *ngIf="displayRight">
+    <button (click)="closeRightMenu()">Close &times;</button>
+    <div class="remove-user-button" *ngIf="usersBoardRelationList">
+
+        <mat-card class="mat-card">
+            <label class="label-style-owner">Board Owner</label>
+            <mat-list class="mat-list">
+                <div *ngFor="let ub of usersBoardRelationList">
+                    <mat-list-item *ngIf="ub.isOwner">
+                        <div>
+                            <h2 style="color: darkgoldenrod" mat-line>{{ub.user.pseudo}}</h2>
+                        </div>
+                    </mat-list-item>
+                </div>
+            </mat-list>
+        </mat-card>
+
+    </div>
+    <hr style="background-color: white;">
+    <div class="remove-user-button" *ngIf="usersBoardRelationList">
+
+        <mat-card class="mat-card">
+            <label class="label-style-users-invited">User(s) invited</label>
+            <mat-list class="mat-list">
+                <div *ngFor="let ub of usersBoardRelationList">
+                    <mat-list-item *ngIf="ub.userIsInvitedOnTheBoard">
+                        <div (click)="removeUserBoardRelation(ub)">
+                            <h3 style="color: darkgreen" mat-line>{{ub.user.pseudo}}</h3>
+                        </div>
+                    </mat-list-item>
+                </div>
+            </mat-list>
+        </mat-card>
+
+    </div>
+    <hr class="background-color: white;">
+    <div class="add-user-button">
+        <mat-card class="mat-card">
+            <label class="label-style-users-not-invited">User(s) not invited</label>
+            <mat-list class="mat-list">
+                <div *ngFor="let ub of usersBoardRelationList">
+                    <mat-list-item *ngIf="!ub.userIsInvitedOnTheBoard && !ub.isOwner">
+                        <div (click)="addUserBoardRelation(ub)">
+                            <h3 style="color: indianred;" mat-line>{{ub.user.pseudo}}</h3>
+                        </div>
+                    </mat-list-item>
+                </div>
+            </mat-list>
+        </mat-card>
+    </div>
+
+</div>
+<button class="right" (click)="openRightMenu()">&#9776;</button>
+<!-- sidebar de droite -->
+
+<!-- board-view -->
+<div class="board-title">
+    <div *ngIf="!displayEditBoard">
+        <span *ngIf="board">View {{board.name }}</span>
+        <a matTooltip="Rename Board" (click)="toggleDisplayEditBoard();"><i class="material-icons">construction</i></a>
+        <span *ngIf="board"> - Owned by {{board.owner.pseudo}}</span>
+    </div>
+    <div *ngIf="displayEditBoard">
+        <input #editBoardInput type="text" (keydown.esc)="toggleDisplayEditBoard();" (keyup.enter)="onEnterForEditBoard(editBoardInput.value, board.id); editBoardInput.value='';" appSetFocus>
+        <span *ngIf="board"> - Owned by {{board.owner.pseudo}}</span>
+    </div>
+</div>
+<a matTooltip="Add List" class="addboardorcard" (click)="addBoardList()"><i class="material-icons">post_add</i></a>
+<div class="wrap">
+    <div class="board-columns" cdkDropList [cdkDropListData]="boardLists" (cdkDropListDropped)="dropGroup($event)">
+        <div class="board-column" cdkDropListGroup *ngFor="let bList of boardLists">
+            <div class="column-title">
+                <div *ngIf="!displayEditList(bList.id)">
+                    <span> {{bList.name}} </span>
+                    <div class="options">
+                        <a class="pointer" matTooltip="Rename List" (click)="toggleDisplayEditList(bList.id)"><i class="material-icons">construction</i></a>
+                        <a class="pointer" matTooltip="Delete List" (click)="deleteBoardList(bList.id)"><i class="material-icons">delete_outline</i></a>
+                    </div>
+                </div>
+                <div *ngIf="displayEditList(bList.id)">
+                    <input value='{{bList.name}}' #editListInput type="text" (keydown.esc)="toggleDisplayEditList(bList.id)" (keyup.enter)="onEnterForBoardList(editListInput.value, bList.id); editListInput.value='';" appSetFocus>
+                </div>
+
+            </div>
+            <div cdkDropList class="tasks-container" id={{bList.id}} [cdkDropListData]="bList.cards" (cdkDropListDropped)="dropItem($event)" [cdkDropListConnectedTo]="getConnectedList()">
+                <div class="task" *ngFor="let card of bList.cards" cdkDrag [cdkDragData]="card">
+                    <div class="task-in">
+                        <span>{{card.name}}</span>
+                        <div class="options">
+                            <a class="pointer" matTooltip="Card Details" (click)=" open(card) "><i class="material-icons ">linear_scale</i></a>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="cardusers" *ngFor="let u of card.users">
+                        <p> {{ u.pseudo | slice : 0 : 2 | uppercase}}</p>
+                    </div>
+                </div>
+                <div>
+                    <a class="addboardorcard" (click)="toggleDisplayAddCard(bList.id); ">Add a card...</a>
+                </div>
+                <div *ngIf="displayAddCard(bList.id) ">
+                    <input #addCardInput type="text " (keydown.esc)="toggleDisplayAddCard(bList.id); " (keyup.enter)="onEnterForCard(addCardInput.value, bList.id); addCardInput.value='' ; " appSetFocus>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- board-view -->

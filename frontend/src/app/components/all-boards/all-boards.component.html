@@ -1,0 +1,44 @@
+<html>
+<div class="cards">
+  <p class="p">Tableaux dont vous êtes propriétaire
+    <a (click)="addBoard()">
+      <i style=" vertical-align:middle" class="material-icons">add_box</i>
+    </a>
+    <a (click)="selectBoards()">
+      <i style=" vertical-align:middle" class="material-icons">remove_circle</i>
+    </a>
+  </p>
+  <hr>
+  <div class="inside" *ngIf="!slctBoards">
+    <mat-card class="card" *ngFor="let board of userBoards" routerLink="/boards/board-view/{{ board.id }}">
+      {{ board.name }}
+    </mat-card>
+  </div>
+
+  <div *ngIf="slctBoards">
+    <form class="inside" [formGroup]="formBoards" novalidate>
+      <mat-card class="card" *ngFor="let board of userBoards">
+        <mat-checkbox labelPosition="before" (change)="onCheckboxChange(board.id)">
+          {{ board.name }}
+        </mat-checkbox>
+      </mat-card>
+    </form>
+    <div>
+      <button type="button" (click)="cancelDeleteBoards()">Cancel</button>
+      <button type="button" (click)="deleteBoards()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="cards">
+  <p class="p">Tableaux dans lesquels vous participez</p>
+  <hr>
+  <div class="inside">
+    <mat-card class="card" *ngFor="let board of boardsWhereUserIsInvited"
+      routerLink="/boards/board-view/{{ board.id }}">
+      {{ board.name }}
+    </mat-card>
+  </div>
+</div>
+
+</html>

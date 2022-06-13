@@ -1,0 +1,254 @@
+.animate-right {
+    animation: animateright 0.4s;
+}
+
+@keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0
+    }
+    to {
+        right: 0;
+        opacity: 1
+    }
+}
+
+.sidebar {
+    height: 100%;
+    width: 300px;
+    background-color: #212529;
+    position: sticky!important;
+    z-index: 2;
+    overflow: auto;
+    float: right!important;
+    padding: 20px;
+    border-left: 1px solid grey;
+}
+
+.right {
+    float: right!important;
+    margin-right: 45px;
+}
+
+.board-title {
+    margin-top: 10px;
+    color: white;
+    font-size: 32px;
+    overflow: auto;
+}
+
+.wrap {
+    /* position: relative; */
+    width: 93vw;
+    height: 90vh;
+    /* overflow-x: scroll; */
+}
+
+.board-title a {
+    vertical-align: middle;
+}
+
+.board-title input {
+    font-size: 20px;
+}
+
+.addboardorcard {
+    color: white !important;
+    cursor: pointer;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* height: 100%; */
+}
+
+.column-title {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    /* margin-left: 10px; */
+    color: white;
+    border-bottom: 1px solid white;
+    overflow: auto;
+}
+
+.column-title span {
+    float: left;
+}
+
+.column-title .options {
+    float: right;
+}
+
+.column-title input {
+    display: block;
+}
+
+.board-columns {
+    display: flex;
+    /* flex-grow: 1; */
+    flex-basis: 0;
+    margin-left: 10px;
+    position: absolute;
+    overflow-x: scroll;
+    margin-right: 20px;
+    height: 90vh;
+    width: 90vw;
+    z-index: 1;
+}
+
+.board-column {
+    min-width: 250px;
+    /* margin: 30px; */
+    padding: 15px;
+    /* border-radius: 10px; */
+    margin-right: 20px;
+    /* border: 1px solid white; */
+    /* border-left: 1px solid white; */
+}
+
+.tasks-container {
+    flex-grow: 1;
+    /* overflow-y: auto; */
+    /* border: 1px solid darkgray; */
+    border-radius: 4px;
+    padding: 10px 8px;
+}
+
+.task {
+    /* display: flex;
+    flex-grow: 1;
+    flex-basis: 0; */
+    padding: 5px 15px;
+    /* background: #68369A; */
+    background: rgb(58, 38, 113);
+    background: radial-gradient(circle, rgba(58, 38, 113, 1) 0%, rgba(68, 20, 87, 1) 100%);
+    color: orange;
+    border: 3px rgb(57, 20, 94) solid;
+    /* border-bottom: solid 1px #ddd; */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    text-shadow: rgb(36, 30, 5) 1px 0 5px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05), 0 3px 14px 2px rgba(38, 10, 83, 0.911);
+}
+
+.task .task-in {
+    overflow: auto;
+}
+
+.task .task-in span {
+    float: left;
+}
+
+.task .task-in .options {
+    float: right;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tasks-container.cdk-drop-list-dragging .task:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.board-title i.material-icons {
+    color: white;
+    cursor: pointer;
+}
+
+.column-title,
+.task i.material-icons {
+    color: white;
+    cursor: pointer;
+}
+
+.remove-user-button {
+    color: chartreuse;
+    cursor: pointer;
+}
+
+.add-user-button {
+    color: darkgoldenrod;
+    cursor: pointer;
+}
+
+.cardusers {
+    display: inline;
+}
+
+.cardusers p {
+    color: white;
+    font-size: 10px;
+    background-color: yellowgreen;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 6px;
+    margin-bottom: 0;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.label-style-users-invited {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    color: white;
+    font-style: italic;
+    background-color: green;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+.label-style-users-not-invited {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    color: white;
+    font-style: italic;
+    background-color: red;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+.label-style-owner {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+    color: white;
+    font-style: italic;
+    background-color: darkgoldenrod;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+.mat-card {
+    box-shadow: 0 5px 5px -3px white, 0 3px 14px 2px white
+}
+
+.mat-list {
+    background-color: transparent;
+    box-shadow: 0 5px 5px -3px white, 0 3px 14px 2px white
+}

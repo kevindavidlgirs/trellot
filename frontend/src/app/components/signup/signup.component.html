@@ -1,0 +1,61 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <h1 class="header">Signup</h1>
+      <div class="form">
+          <mat-form-field>
+              <input matInput placeholder="Pseudo" [formControl]="ctlPseudo">
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('pattern')"> Only letters, numbers or underscores.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('required')">Required.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('minlength')">Minimum length is {{ctlPseudo.errors['minlength'].requiredLength}}.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('maxlength')">Maximum length is {{ctlPseudo.errors['maxlength'].requiredLength}}.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('pseudoUsed')">Pseudo already in use.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('forbiddenValue')">Forbiddent value 'abc'.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlPseudo.hasError('custom')">{{ctlPseudo.errors.custom}}</mat-error>
+            </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="First Name" [formControl]="ctlFirstName">
+              <mat-error class="field-error" *ngIf="ctlFirstName.hasError('minlength')">Minimum length is {{ctlFirstName.errors['minlength'].requiredLength}}.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxlength')">Maximum length is {{ctlFirstName.errors['maxlength'].requiredLength}}.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Last Name" [formControl]="ctlLastName">
+              <mat-error class="field-error" *ngIf="ctlLastName.hasError('minlength')">Minimum length is {{ctlLastName.errors['minlength'].requiredLength}}.</mat-error>
+              <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxlength')">Maximum length is {{ctlLastName.errors['maxlength'].requiredLength}}.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" [formControl]="ctlEmail">
+            <mat-error class="field-error" *ngIf="ctlEmail.hasError('pattern')"> The format is not correct for an email.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlEmail.hasError('required')">Required.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlEmail.hasError('emailUsed')">Email already in use.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlEmail.hasError('custom')">{{ctlEmail.errors.custom}}.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Birth Date" [formControl]="ctlBirthDate" type="date">
+            <mat-error class="field-error" *ngIf="ctlBirthDate.hasError('tooYoung')">Must be at least 18 years old.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlBirthDate.hasError('futureBorn')">Can't be born in the future.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" [formControl]="ctlPassword" type="password" autocomplete="new-password">
+            <mat-error class="field-error" *ngIf="ctlPassword.hasError('required')">Required</mat-error>
+            <mat-error class="field-error" *ngIf="ctlPassword.hasError('minlength')">Minimum length is {{ctlPassword.errors['minlength'].requiredLength}}.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlPassword.hasError('maxlength')">Maximum length is {{ctlPassword.errors['maxlength'].requiredLength}}.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password à confirmer" [formControl]="ctlPasswordC" type="password">
+            <mat-error class="field-error" *ngIf="ctlPasswordC.hasError('required')">Required.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlPasswordC.hasError('minlength')">Minimum length is {{ctlPasswordC.errors['minlength'].requiredLength}}.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlPasswordC.hasError('maxlength')">Maximum length is {{ctlPasswordC.errors['maxlength'].requiredLength}}.</mat-error>
+            <mat-error class="field-error" *ngIf="ctlPasswordC.hasError('mustMatch')">Password Must Match.</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="footer">
+          <button [disabled]="loading" mat-stroked-button>Sign Up</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+          />
+          <a class="nav-link text-dark" [routerLink]='["/login"]'>
+            <span class="material-icons">login</span>
+            <span> Login </span>
+          </a>
+      </div>
+  </form>
+</div>

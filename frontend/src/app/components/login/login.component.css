@@ -1,0 +1,57 @@
+form {
+    color: white;
+    text-align: center;
+    width: 30%;
+    display: grid;
+    grid-row-gap: 10px;
+    margin: 0 auto;
+    width: 250px;
+    /* background-color: rgba(255, 255, 255, 0.20);
+    box-shadow: 0 5px 5px 0px rgba(255, 255, 255, 0.25), 0 3px 14px 2px rgba(130, 128, 133, 0.911); */
+    padding: 20px;
+}
+
+input {
+    color: white;
+}
+
+.mat-form-field-label {
+    color: wheat;
+}
+
+.mat-form-field-underline {
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+
+/* input color class */
+
+::ng-deep input.mat-input-element {
+    color: white !important;
+}
+
+::ng-deep .mat-form-field-label {
+    color: rgb(137, 74, 199) !important;
+}
+
+
+/* Change label color on focused */
+
+ ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: orange !important;
+}
+
+
+/* underline border color on focused */
+
+ ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
+    background-color: #fbc550 !important;
+}

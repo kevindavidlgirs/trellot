@@ -1,0 +1,79 @@
+<form id="frm" class="form" [formGroup]="frm" novalidate>
+    <h1 class="header" style="color:white">{{(!isNew ? 'Edit existing' : 'Add a new') + ' member'}}</h1>
+    <mat-tab-group mat-stretch-tabs dynamicHeight>
+      <mat-tab label="General Data" style="color:white">
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Pseudo" [formControl]="ctlPseudo" required [readonly]="!isNew">
+                <mat-error class="field-error" *ngIf="ctlPseudo.hasError('required')">Required</mat-error>
+                <mat-error class="field-error" *ngIf="ctlPseudo.hasError('minlength')">Minimum length is {{ctlPseudo.errors['minlength'].requiredLength}}</mat-error>
+                <mat-error class="field-error" *ngIf="ctlPseudo.hasError('pseudoUsed')">Pseudo already in use</mat-error>
+                <mat-error class="field-error" *ngIf="ctlPseudo.hasError('forbiddenValue')">Forbiddent value 'abc'</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Firstname" [formControl]="ctlFirstName">
+                <mat-error class="field-error" *ngIf="ctlFirstName.hasError('minlength')">Minimum length is {{ctlFirstName.errors['minlength'].requiredLength}}</mat-error>
+                <mat-error class="field-error" *ngIf="ctlFirstName.hasError('maxlength')">Maximum length is {{ctlFirstName.errors['maxlength'].requiredLength}}.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Lastname" [formControl]="ctlLastName">
+                <mat-error class="field-error" *ngIf="ctlLastName.hasError('minlength')">Minimum length is {{ctlLastName.errors['minlength'].requiredLength}}</mat-error>
+                <mat-error class="field-error" *ngIf="ctlLastName.hasError('maxlength')">Maximum length is {{ctlLastName.errors['maxlength'].requiredLength}}.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [placeholder]="'Password ' + (isNew ? '' : ' (leave blank if no change)')" [formControl]="ctlPassword" type="password" [required]="isNew" autocomplete="new-password">
+                <mat-error class="field-error" *ngIf="ctlPassword.hasError('required')">Required</mat-error>
+                <mat-error class="field-error" *ngIf="ctlPassword.hasError('minlength')">Minimum length is {{ctlPassword.errors['minlength'].requiredLength}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Birth Date" [formControl]="ctlBirthDate" type="date">
+                <mat-error class="field-error" *ngIf="ctlBirthDate.hasError('tooYoung')">Must be at least 18 years old</mat-error>
+                <mat-error class="field-error" *ngIf="ctlBirthDate.hasError('futureBorn')">Can't be born in the future</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select style="color:white" placeholder="Role" [formControl]="ctlRole">
+                    <mat-option [value]="2">Administrator</mat-option>
+                    <mat-option [value]="1">Manager</mat-option>
+                    <mat-option [value]="0">Member</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Phone Numbers" style="color:white">
+          <div class="phone-container" [formGroup]="frmPhone">
+              <mat-form-field>
+                  <input matInput placeholder="Type" [formControl]="ctlPhoneType" required>
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput placeholder="Phone Number" [formControl]="ctlPhoneNumber" required>
+              </mat-form-field>
+              <button class="add" mat-stroked-button (click)="phoneAdd()" [disabled]="frmPhone.pristine || frmPhone.invalid || frmPhone.pending">Add</button>
+              <ng-container *ngFor="let p of phones">
+                  <div>{{p.type}}</div>
+                  <div>{{p.number}}</div>
+                  <div class="delete">
+                      <button mat-icon-button tabindex="-1">
+                          <mat-icon (click)="phoneDelete(p)">delete</mat-icon>
+                      </button>
+                  </div>
+              </ng-container>
+          </div>
+      </mat-tab>
+      <mat-tab label="Picture" style="color:white">
+        <div class="picture-container">
+            <img class="img-responsive" [src]="picturePath" width="200px">
+            <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".png,.jpg,.gif">
+        </div>
+      </mat-tab>
+  </mat-tab-group>
+  <div class="footer">
+    <button style="color:white" type="submit" mat-button form="frm" [disabled]="frm.pristine || frm.invalid || frm.pending" (click)="update()">{{!isNew ? 'Update' : 'Add'}}</button>
+    <button style="color:white" type="reset" mat-button (click)="cancel()">Cancel</button>
+  </div>
+</form>
+<!-- <pre>
+{{frm.value | json }}
+{{frm.invalid | json }}
+{{frm.pristine | json }}
+{{frm.pending | json }}
+</pre> -->
