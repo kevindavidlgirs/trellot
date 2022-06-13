@@ -1,4 +1,4 @@
-# Projet PRID 2021 - Groupe 06 - Marie-Hélène Devogeleer et Kevin David L. Girs
+# Projet PRID 2021 - Groupe 06 - Marie-Hélène Devogeleer et Kevin David L. Girs. 2020 - 2021
 
 ### Liste des utilisateurs et mots de passes
 
