@@ -44,5 +44,5 @@
     Lors d'un Sign Up, il n'y a pas de vérification pour la date de naissance.
 
 ## Auteurs
-* **Marie-Hélène Devogeleer et Kevin David L. Girs.**
+* **Marie-Hélène Devogeleer**
 * **Kevin David L. Girs.**
