@@ -45,4 +45,4 @@
 
 ## Auteurs
 * **Marie-Hélène Devogeleer**
-* **Kevin David L. Girs.**
+* **Kevin David L. Girs** - [kevindavidlgirs](https://github.com/kevindavidlgirs)
