@@ -46,3 +46,7 @@
 ## Auteurs
 * **Marie-Hélène Devogeleer**
 * **Kevin David L. Girs** - [kevindavidlgirs](https://github.com/kevindavidlgirs)
+
+## Info
+- Projet de groupe pour un bachelier en informatique de gestion donné à l'EPFC (Bruxelles-Capitale) https://www.epfc.eu/
+- Le framework PRBD a été créé par les professeurs de l'EPFC
